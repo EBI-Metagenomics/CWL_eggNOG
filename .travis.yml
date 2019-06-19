@@ -1,0 +1,19 @@
+os: linux
+
+services:
+  - docker
+
+language: python
+python: 2.7
+
+install:
+  - pip install -q cwl-runner cwltest cwltool
+  - wget https://github.com/eggnogdb/eggnog-mapper/archive/1.0.3.tar.gz $TRAVIS_BUILD_DIR/eggnog
+  - tar -xvzf $TRAVIS_BUILD_DIR/eggnog/eggnog-mapper-1.0.3.tar.gz
+#  - mv $TRAVIS_BUILD_DIR/eggnog/eggnog-mapper/download_eggnog_data.py Tools/makeDB  # copy downloading file
+#  - cp $TRAVIS_BUILD_DIR/eggnog/eggnog-mapper/eggnogmapper/common.py $TRAVIS_BUILD_DIR/eggnog/eggnog-mapper/eggnogmapper/utils.py $TRAVIS_BUILD_DIR/eggnog/eggnog-mapper/eggnogmapper/__init__.py $TRAVIS_BUILD_DIR/Tools/makeDB/eggnogmapper/  # copy dependencies
+#  - mkdir $TRAVIS_BUILD_DIR/Tools/makeDB/data
+#  - docker build -t eggnog_makedb $TRAVIS_BUILD_DIR/Tools/makeDB  # build docker for db
+
+script:
+  - echo -e 'y\ny\n' | python $TRAVIS_BUILD_DIR/eggnog/eggnog-mapper/download_eggnog_data.py
