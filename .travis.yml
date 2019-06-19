@@ -8,6 +8,7 @@ python: 2.7
 
 install:
   - pip install -q cwl-runner cwltest cwltool
+  - mkdir $TRAVIS_BUILD_DIR/eggnog
   - wget https://github.com/eggnogdb/eggnog-mapper/archive/1.0.3.tar.gz $TRAVIS_BUILD_DIR/eggnog
   - tar -xvzf $TRAVIS_BUILD_DIR/eggnog/eggnog-mapper-1.0.3.tar.gz
 #  - mv $TRAVIS_BUILD_DIR/eggnog/eggnog-mapper/download_eggnog_data.py Tools/makeDB  # copy downloading file
